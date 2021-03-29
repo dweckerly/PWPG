@@ -1,14 +1,17 @@
-<div #introModal class="modal">
+<div id="intro-modal" class="modal">
     <div class="modal-content">
-        <div class="modal-header">
-            <h2>Modal Header</h2>
-        </div>
         <div class="modal-body">
-            <p>Some text in the Modal Body</p>
-            <p>Some other text...</p>
+            <p>Congratulations!</p>
+            <p>You've filed the paperwork, called in a few favors, and are now ready to embark on your journey as a professional wreslting promoter!</p>
+            <p>With $100 to your name and some contacts in the biz, it's time to book an event and take the first steps toward your professional wrestling empire.</p>
+            <p>Enter in your enterprise's name to get started!</p>
+            <div class="input-container">
+                <input id="name-input" type="text" placeholder="Ex: Super Awesome Wrestling Co." maxlength="64" (input)="inputListener($event.target.value)">
+                <button (click)="suggestName()">Suggest</button>
+            </div>
         </div>
         <div class="modal-footer">
-            <h3>Modal Footer</h3>
+            <button id="start-btn" disabled>Start</button>
         </div>
     </div>
 </div>

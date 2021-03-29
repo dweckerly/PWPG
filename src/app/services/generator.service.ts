@@ -8,12 +8,16 @@ import { ORG_NAMES } from '../data/generator-data';
 export class GeneratorService {
   orgNumber: number = 10;
 
-  generateOrgNames() {
+  generateOrgNames(orgAmount?: number) {
     let orgs: string[] = [];
     let prefixes = ORG_NAMES.prefix;
     let infixes = ORG_NAMES.infix;
     let suffixes = ORG_NAMES.suffix;
-    for(let i = 0; i < this.orgNumber; i++) {
+    let numberOfNames = this.orgNumber;
+    if(orgAmount !== null && orgAmount > 0) {
+      numberOfNames = orgAmount;
+    }
+    for(let i = 0; i < numberOfNames; i++) {
       let prefixChoice = this.getRandomInt(prefixes.length);
       let orgName = prefixes[prefixChoice] + " ";
       prefixes.splice(prefixChoice, 1);
