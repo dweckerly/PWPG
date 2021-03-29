@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Output } from '@angular/core';
 import { GeneratorService } from 'src/app/services/generator.service';
 
 @Component({
@@ -10,6 +10,8 @@ export class IntroModalComponent implements AfterViewInit {
   nameInput;
   submitButton;
   
+  @Output() startBtn = new EventEmitter<string>();
+
   constructor(private generator: GeneratorService) {}
 
   ngAfterViewInit() {
@@ -30,5 +32,9 @@ export class IntroModalComponent implements AfterViewInit {
     let genNames = this.generator.generateOrgNames(1);
     this.nameInput.value = genNames[0];
     this.submitButton.disabled = false;
+  }
+
+  startBtnClick() {
+    this.startBtn.emit(this.nameInput.value);
   }
 }
