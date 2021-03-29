@@ -3,7 +3,7 @@
 export const ORG_NAMES = {
     "prefix": [
         "Kick Ass","Awesome","Big","Extreme","Elite","National","Professional","Impact","United","Super",
-        "Global","WorldWide","Hot","Championship","Pro","Pride","Honor","Universal","First-class","Northern",
+        "Global","Worldwide","Hot","Championship","Pro","Pride","Honor","Universal","First-class","Northern",
         "Grand","Wicked","Action","Superior","Major","Intense","West Coast","East Coast","Deep South"
     ],
     "infix": [

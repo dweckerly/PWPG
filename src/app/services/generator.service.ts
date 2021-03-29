@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ORG_NAMES } from '../data/generator-data';
+import { ORG_NAMES } from '../data/generator.data';
 
 @Injectable({
   providedIn: 'root'
