@@ -1,0 +1,20 @@
+.tabs {
+    border-bottom: 1px solid #ccc;
+}
+
+.tab {
+    border: none;
+    background-color: inherit;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.tabs button:hover {
+    background-color: #ddd;
+}
+
+.tabs button.active {
+    background-color: #ccc;
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GeneratorService } from './services/generator.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'wrestle';
+
+  constructor(private generator: GeneratorService) {
+    console.log(generator.generateOrgNames());
+  }
 }

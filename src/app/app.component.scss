@@ -1,0 +1,19 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas: "header header header header" "control-panel tabs-section tabs-section tabs-section";
+}
+
+.header {
+    grid-area: header;
+}
+
+.control-panel {
+    grid-area: control-panel;
+}
+
+.tabs-section {
+    grid-area: tabs-section;
+}
