@@ -6,14 +6,14 @@ import { ORG_NAMES } from '../data/generator.data';
   providedIn: 'root'
 })
 export class GeneratorService {
-  orgNumber: number = 10;
+  orgDefaultAmount: number = 10;
 
   generateOrgNames(orgAmount?: number) {
     let orgs: string[] = [];
     let prefixes = ORG_NAMES.prefix;
     let infixes = ORG_NAMES.infix;
     let suffixes = ORG_NAMES.suffix;
-    let numberOfNames = this.orgNumber;
+    let numberOfNames = this.orgDefaultAmount;
     if(orgAmount !== null && orgAmount > 0) {
       numberOfNames = orgAmount;
     }
