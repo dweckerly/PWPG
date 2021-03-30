@@ -110,8 +110,7 @@ export const PERFORMERS = {
 
     },
     "divisions": [
-        "",
-        "",
+        "Junior Heavyweight",
         "Heavyweight",
         "Super Heavyweight"
     ],
