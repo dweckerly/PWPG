@@ -483,7 +483,6 @@ export const NAMES = {
         "Belfort",
         "Bigelow",
         "Styles",
-        "Flair",
         "Foley",
         "Goodwillie",
         "Perv",

@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { ORG_NAMES } from '../data/generator.data';
+import { NAMES, ORG_NAMES } from '../data/generator.data';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneratorService {
+  names = NAMES; 
   orgDefaultAmount: number = 10;
 
   generateOrgNames(orgAmount?: number) {
@@ -42,6 +44,32 @@ export class GeneratorService {
       orgs.push(orgName)
     }
     return orgs;
+  }
+
+  generateName(genderInput?: string): string {
+    let genderChanceThreshold = 0.79;
+    let gender = null;
+    if(genderInput !== undefined) {
+      gender = genderInput;
+    }
+    else {
+      gender = (Math.random() > genderChanceThreshold) ? 'female' : 'male';
+    }
+    let firstNamesLength = this.names[gender].length;
+    let firstNameIndex = this.getRandomInt(firstNamesLength);
+    let firstName = this.names[gender][firstNameIndex];
+    this.names[gender].splice(firstNameIndex, 1);
+
+    let lastNamesLength = this.names['lastNames'].length;
+    let lastNameIndex = this.getRandomInt(lastNamesLength);
+    let lastName = this.names['lastNames'][lastNameIndex];
+    this.names['lastNames'].splice(lastNameIndex, 1);
+
+    return firstName + " " + lastName;
+  }
+
+  generateWrestler(specificType?: string, specificTier?: string, lowerTiersToo?: boolean) {
+
   }
 
 
