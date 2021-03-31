@@ -39,6 +39,5 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.introModal.style.display = "none";
     let player = new Player(name, 100, 0, "Micro-enterprise");
     this.playerService.updatePlayerObject(player);
-    this.localStorageService.set("player", player);
   }
 }

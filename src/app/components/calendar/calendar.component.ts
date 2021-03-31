@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DAYS } from 'src/app/data/days';
 
 @Component({
   selector: 'app-calendar',
@@ -10,14 +11,15 @@ export class CalendarComponent implements OnInit {
   years: number[] = [1];
   months: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
   weeks: number[] = [1, 2, 3, 4];
-  days: string[] = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
+  days: number[] = [0, 1, 2, 3, 4, 5, 6];
+  dayArray: string[] = DAYS;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  addEvent(year: number, month: number, week: number, day: string) {
+  addEvent(year: number, month: number, week: number, day: number) {
 
   }
 

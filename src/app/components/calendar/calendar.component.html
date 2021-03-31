@@ -9,7 +9,7 @@
                 <p class="week-label">Week {{week}}</p>
                 <div class="days-wrapper flex">
                     <div class="day" *ngFor="let day of days">
-                        <p class="day-label">{{day}}</p>
+                        <p class="day-label">{{dayArray[day]}}</p>
                         <div class="text-center">
                             <button (onclick)="addEvent(year, month, week, day)" class="add-event-btn">+</button>
                         </div>

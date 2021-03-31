@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Player } from '../objects/player';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class PlayerService {
   
   playerObjectChange: Subject<Player> = new Subject<Player>();  
 
-  constructor() {
+  constructor(private localStorageService: LocalStorageService) {
     this.playerObjectChange.subscribe(value => {
       this.name = value.name;
       this.money = value.money;
@@ -24,5 +25,6 @@ export class PlayerService {
 
   updatePlayerObject(player: Player) {
     this.playerObjectChange.next(player);
+    this.localStorageService.set("player", player);
   }
 }
