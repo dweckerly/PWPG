@@ -5,7 +5,10 @@
 
 body {
     height: 100%;
+    max-height: 100vh;
     margin: 0;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
 
 .flex {

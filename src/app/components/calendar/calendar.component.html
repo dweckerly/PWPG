@@ -1,1 +1,21 @@
-<app-week></app-week>
+<div class="calendar-wrapper">
+    <div class="year-wrapper" *ngFor="let year of years">
+        <div class="year-label-container">
+            <p class="year-label">Year {{year}}</p>
+        </div>
+        <div class="month-wrapper" *ngFor="let month of months">
+            <p class="month-label">Month {{month}}</p>
+            <div class="week-wrapper" *ngFor="let week of weeks">
+                <p class="week-label">Week {{week}}</p>
+                <div class="days-wrapper flex">
+                    <div class="day" *ngFor="let day of days">
+                        <p>{{day}}</p>
+                        <div class="text-center">
+                            <button (onclick)="addEvent(year, month, week, day)" class="add-event-btn">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

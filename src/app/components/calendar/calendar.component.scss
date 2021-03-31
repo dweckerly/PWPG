@@ -1,0 +1,41 @@
+.calendar-wrapper {
+    overflow: auto;
+    height: 50vh;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+}
+
+.year-wrapper {
+    margin: 10px;
+}
+
+.year-label-container {
+    padding: 10px 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 8px 6px -6px rgb(51, 51, 51);
+}
+
+.month-wrapper {
+    margin-top: 2.5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    border: 1px solid #eee;
+    box-shadow: -3px 3px 8px rgb(51, 51, 51);
+    padding-bottom: 1em;
+    border-radius: 5px;
+}
+
+.day {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.add-event-btn {
+    border: none;
+    border-radius: 50%;
+    width: 2em;
+    height: 2em;
+}
