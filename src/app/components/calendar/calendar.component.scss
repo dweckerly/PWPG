@@ -18,6 +18,10 @@
     background-color: #fff;
 }
 
+.year-label {
+    font-size: 36px;
+}
+
 .month-wrapper {
     margin-top: 2.5%;
     margin-left: 2.5%;
@@ -29,6 +33,10 @@
     box-shadow: 0 10px 15px rgb(51, 51, 51);
     padding-top: 1em;
     border-radius: 5px;
+}
+
+.month-label {
+    font-size: 28px;
 }
 
 .week-wrapper {
@@ -44,6 +52,11 @@
 .day {
     width: 100%;
     border: 1px solid #ccc;
+}
+
+.day-label {
+    margin-left: 1em;
+    font-size: 16px;
 }
 
 .add-event-btn {
