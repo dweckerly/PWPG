@@ -5,8 +5,6 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { WeekComponent } from './week/week.component';
 import { EventsComponent } from './events/events.component';
 import { RosterComponent } from './roster/roster.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { InsightsComponent } from './insights/insights.component';
 import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { HeaderComponent } from './header/header.component';
 import { ModalModule } from './modal/modal.module';
@@ -20,8 +18,6 @@ import { AssetsComponent } from './assets/assets.component';
     WeekComponent,
     EventsComponent,
     RosterComponent,
-    ContactsComponent,
-    InsightsComponent,
     ControlPanelComponent,
     HeaderComponent,
     ActionsComponent,
@@ -37,8 +33,6 @@ import { AssetsComponent } from './assets/assets.component';
     WeekComponent,
     EventsComponent,
     RosterComponent,
-    ContactsComponent,
-    InsightsComponent,
     ControlPanelComponent,
     HeaderComponent,
     ModalModule
