@@ -162,9 +162,64 @@ const book = {
 
 const purchase = {
     name: "Purchase",
-    description: "Buy essential items for your events. ",
+    description: "Buy essential items for your events.",
     options: [
-        {}
+        {
+            name: "Portable Ring Ropes",
+            description: "",
+            cost: 100,
+            type: "ring",
+            augments: null
+        },
+        {
+            name: "Canvas Mat Floor Ring",
+            description: "",
+            cost: 375,
+            type: "ring",
+            augments: null
+        },
+        {
+            name: "12-Foot Sports Mat Ring with Frame",
+            description: "",
+            cost: 2050,
+            type: "ring",
+            augments: null
+        },
+        {
+            name: "16-Foot Deluxe Ring",
+            description: "",
+            cost: 5475,
+            type: "ring",
+            augments: null
+        },
+        {
+            name: "20-Foot Professional Competition Ring",
+            description: "",
+            cost: 8900,
+            type: "ring",
+            augments: null
+        },
+        {
+            name: "Entryway Curtains",
+            description: "",
+            cost: 325,
+            type: "decor",
+            augments: null
+        },
+        {
+            name: "Custom Ring Floor Print",
+            description: "",
+            cost: 500,
+            type: "decor",
+            augments: null
+        },
+        {
+            name: "Custom Printed Ring Skirt",
+            description: "",
+            cost: 625,
+            type: "decor",
+            augments: null
+        },
     ]
 }
 

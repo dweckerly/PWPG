@@ -11,6 +11,7 @@ import { ControlPanelComponent } from './control-panel/control-panel.component';
 import { HeaderComponent } from './header/header.component';
 import { ModalModule } from './modal/modal.module';
 import { ActionsComponent } from './actions/actions.component';
+import { AssetsComponent } from './assets/assets.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { ActionsComponent } from './actions/actions.component';
     InsightsComponent,
     ControlPanelComponent,
     HeaderComponent,
-    ActionsComponent
+    ActionsComponent,
+    AssetsComponent
   ],
   imports: [
     CommonModule,
