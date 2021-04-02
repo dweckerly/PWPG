@@ -12,6 +12,7 @@ import { ActionsComponent } from './actions/actions.component';
 import { AssetsComponent } from './assets/assets.component';
 import { BusinessLevelPipe } from '../pipes/business-level.pipe';
 import { EmployeesComponent } from './employees/employees.component';
+import { ScoutComponent } from './actions/scout/scout.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EmployeesComponent } from './employees/employees.component';
     ActionsComponent,
     AssetsComponent,
     BusinessLevelPipe,
-    EmployeesComponent
+    EmployeesComponent,
+    ScoutComponent
   ],
   imports: [
     CommonModule,

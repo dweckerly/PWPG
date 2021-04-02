@@ -7,14 +7,33 @@
     </div>
     <div class="action-details-grid">
         <div class="action-details-wrapper component-wrapper" *ngFor="let action of actions" [ngClass]="(activeAction == action.name)? 'show' : 'hide'">
-            <div class="action-options flex-fill" [ngClass]="{'disabled-action' : !areRequirementsMet(option.requirements) || !hasEnoughMoney(option.cost)}" *ngFor="let option of action.options">
-                <div>
-                    <p class="action-title">{{option.name}}</p>
-                    <p class="desc-text action-desc">{{option.description}}</p>
+            <div class="flex purchase-category-filter" *ngIf="activeAction == 'Purchase'">
+                <div class="purchase-category" (click)="sortPurcahaseItemsByCategory('*')">*</div>
+                <div class="purchase-category" (click)="sortPurcahaseItemsByCategory('audio')">Audio</div>
+                <div class="purchase-category" (click)="sortPurcahaseItemsByCategory('decor')">Decor</div>
+                <div class="purchase-category" (click)="sortPurcahaseItemsByCategory('lights')">Lights</div>
+                <div class="purchase-category" (click)="sortPurcahaseItemsByCategory('ring')">Ring</div>
+                <div class="purchase-category" (click)="sortPurcahaseItemsByCategory('video')">Video</div>
+            </div>
+            <div class="action-options" [ngClass]="{'disabled-action' : !areRequirementsMet(option.requirements) || !hasEnoughMoney(option.cost)}" *ngFor="let option of action.options">
+                <div class="flex-fill">
+                    <div>
+                        <p class="action-title">{{option.name}}</p>
+                        <p class="desc-text action-desc">{{option.description}}</p>
+                    </div>
+                    <div class="capacity-container" *ngIf="option.capacity != null">
+                        <p class="desc-text">Max Capacity: {{option.capacity}}</p>
+                    </div>
+                    <div class="capacity-container" *ngIf="option.type != null">
+                        <p class="desc-text">Category: {{option.type}}</p>
+                    </div>
+                    <div class="cost-container" *ngIf="option.cost != null">
+                        <p class="desc-text" *ngIf="option.cost.time != null">Time: {{option.cost.time[0].amount}} {{option.cost.time[0].period}}</p>
+                        <p class="desc-text" *ngIf="option.cost.money != null">Money: ${{option.cost.money}}</p>
+                    </div>
                 </div>
-                <div class="cost-container" *ngIf="option.cost != null">
-                    <p class="desc-text" *ngIf="option.cost.time != null">Time: {{option.cost.time[0].amount}} {{option.cost.time[0].period}}</p>
-                    <p class="desc-text" *ngIf="option.cost.money != null">Money: ${{option.cost.money}}</p>
+                <div class="action-btn-wrapper text-center" *ngIf="areRequirementsMet(option.requirements) && hasEnoughMoney(option.cost)">
+                    <button class="action-btn" (click)="actionBtnClick(action)">{{action.name}}</button>
                 </div>
             </div>
         </div>

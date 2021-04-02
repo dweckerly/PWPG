@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ACTIONS } from 'src/app/data/actions.data';
+import { ActionService } from 'src/app/services/action.service';
 import { PlayerService } from 'src/app/services/player.service';
 
 @Component({
@@ -11,8 +13,9 @@ export class ActionsComponent implements OnInit {
 
   actions = ACTIONS;
   activeAction = "Scout";
+  activePurchaseCategory = "*"
 
-  constructor(private playerService: PlayerService) { }
+  constructor(private playerService: PlayerService, private router: Router, private actionService: ActionService) { }
 
   ngOnInit(): void {
   }
@@ -46,4 +49,36 @@ export class ActionsComponent implements OnInit {
     return true;
   }
 
+  isOptionAPurchase(category: string): boolean {
+    if(category != null) {
+      return true;
+    }
+    return false;
+  }
+
+  sortPurcahaseItemsByCategory(category:string) {
+    this.activePurchaseCategory = category;
+  }
+
+  actionBtnClick(action) {
+    if(action.name === 'Scout') {
+      this.router.navigateByUrl('/scout');
+    }
+    else if(action.name === 'Book') {
+
+    }
+    else if(action.name === 'Promote') {
+
+    }
+    else if(action.name === 'Hire') {
+
+    }
+    else if(action.name === 'Purchase') {
+
+    }
+  }
+
+  scoutAction(action) {
+
+  }
 }
