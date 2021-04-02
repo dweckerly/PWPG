@@ -15,7 +15,7 @@ const promote = {
                 ]
             },
             attention: 1,
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "Newspaper",
@@ -30,7 +30,7 @@ const promote = {
                 ]
             },
             attention: 3,
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "Radio",
@@ -45,7 +45,7 @@ const promote = {
                 ]
             },
             attention: 3,
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "Local Television",
@@ -60,7 +60,13 @@ const promote = {
                 ]
             },
             attention: 6,
-            businessLevelRequired: 1
+            requirements: [
+                {
+                    attributeName: "businessLevel", 
+                    value: 1
+                }
+            ]
+            
         }
     ]
 }
@@ -70,14 +76,46 @@ const scout = {
     description: "Search for and sign contracts with talented performers to star in your events.",
     options: [
         {
-            name: "",
-            description: "Check local "
+            name: "Local Bars",
+            description: "Check local bars for ruffians willing to fight in your events.",
+            cost: {
+                money: null,
+                time: [
+                    {
+                        amount: 1,
+                        period: "day"
+                    }
+                ]
+            },
+            requirements: null
         },
         {
-            
+            name: "Local Gyms",
+            description: "Find fit performers at local gyms.",
+            cost: {
+                money: null,
+                time: [
+                    {
+                        amount: 1,
+                        period: "day"
+                    }
+                ]
+            },
+            requirements: null
         },
         {
-
+            name: "Local Sporting Event",
+            description: "Attend a local sporting event and offer contracts to athletes.",
+            cost: {
+                money: 15,
+                time: [
+                    {
+                        amount: 1,
+                        period: "day"
+                    }
+                ]
+            },
+            requirements: null
         }
     ]
 }
@@ -89,32 +127,52 @@ const hire = {
         {
             name: "Manual Laborers",
             description: "Find stage crew and laborers to help build up and tear down of event equipment.",
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "Commentators",
             description: "Find the voice(s) of your company to boost excitement at your events.",
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "Design Agency",
             description: "Hire designers to create promotional material and build your brand.",
-            businessLevelRequired: 1
+            requirements: [
+                {
+                    attributeName: "businessLevel", 
+                    value: 1
+                }
+            ]
         },
         {
             name: "Medical Staff",
             description: "",
-            businessLevelRequired: 1
+            requirements: [
+                {
+                    attributeName: "businessLevel", 
+                    value: 1
+                }
+            ]
         },
         {
             name: "Legal Team",
             description: "Keep your assets safe from lawsuits with a suite of lawyers at your service.",
-            businessLevelRequired: 2
+            requirements: [
+                {
+                    attributeName: "businessLevel", 
+                    value: 2
+                }
+            ]
         },
         {
             name: "Writing Staff",
             description: "Procure creative minds to gain access to new angles.",
-            businessLevelRequired: 2
+            requirements: [
+                {
+                    attributeName: "businessLevel", 
+                    value: 2
+                }
+            ]
         }
     ]
 }
@@ -129,7 +187,7 @@ const book = {
             cost: 20,
             capacity: 40,
             augments: null,
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "Warehouse",
@@ -137,7 +195,7 @@ const book = {
             cost: 50,
             capacity: 120,
             augments: null,
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "Strip Club",
@@ -145,7 +203,7 @@ const book = {
             cost: 150,
             capacity: 120,
             augments: null,
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "Bingo Parlor",
@@ -153,7 +211,7 @@ const book = {
             cost: 100,
             capacity: 160,
             augments: null,
-            businessLevelRequired: 0
+            requirements: null
         },
         {
             name: "School Gymnasium",
@@ -161,7 +219,12 @@ const book = {
             cost: 200,
             capacity: 250,
             augments: null,
-            businessLevelRequired: 1
+            requirements: [
+                {
+                    attributeName: "businessLevel", 
+                    value: 1
+                }
+            ]
         }
     ]
 }
@@ -173,7 +236,7 @@ const purchase = {
         {
             name: "Portable Ring Ropes",
             description: "",
-            cost: 100,
+            cost: 125,
             type: "ring",
             augments: null
         },
