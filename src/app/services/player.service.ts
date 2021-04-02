@@ -10,7 +10,7 @@ export class PlayerService {
   name: string;
   money: number;
   hype: number;
-  businessSize: string;
+  businessSize: number;
   
   playerObjectChange: Subject<Player> = new Subject<Player>();  
 

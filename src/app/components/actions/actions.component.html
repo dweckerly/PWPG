@@ -1,1 +1,8 @@
-<p>actions works!</p>
+<div class="component-wrapper">
+    <div class="actions-container">
+        <div class="action-wrapper" *ngFor="let action of actions">
+            <p>{{action.name}}</p>
+            <p>{{action.description}}</p>
+        </div>
+    </div>
+</div>

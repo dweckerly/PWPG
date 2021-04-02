@@ -1,9 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { HeaderComponent } from './components/header/header.component';
 import { Player } from './objects/player';
+import { TimePeriod } from './objects/time/time-period';
 import { GeneratorService } from './services/generator.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { PlayerService } from './services/player.service';
+import { TimeService } from './services/time.service';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +21,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   constructor(
     private playerService: PlayerService,
+    private timeService: TimeService,
     private localStorageService: LocalStorageService
     ) {}
 
@@ -37,7 +40,9 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   initializeGame(name: string) {
     this.introModal.style.display = "none";
-    let player = new Player(name, 100, 0, "Micro-enterprise");
+    let player = new Player(name, 100, 0, 0);
     this.playerService.updatePlayerObject(player);
+    let startTime = new TimePeriod(1, 1, 1, 0);
+    this.timeService.updateTime(startTime)
   }
 }

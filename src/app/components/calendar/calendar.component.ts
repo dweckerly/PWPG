@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DAYS } from 'src/app/data/days';
+import { TimePeriod } from 'src/app/objects/time/time-period';
+import { TimeService } from 'src/app/services/time.service';
 
 @Component({
   selector: 'app-calendar',
@@ -14,13 +16,25 @@ export class CalendarComponent implements OnInit {
   days: number[] = [0, 1, 2, 3, 4, 5, 6];
   dayArray: string[] = DAYS;
 
-  constructor() { }
+  constructor(private timeService: TimeService) { }
 
   ngOnInit(): void {
   }
 
-  addEvent(year: number, month: number, week: number, day: number) {
+  isCurrentDay(y, m, w, d): boolean {
+    let date = this.getCurrentDate;
+    if(date.year === y && date.month === m && date.week === w && date.day === d) {
+      return true;
+    }
+    return false;
+  }
 
+  get getCurrentDate() {
+    return this.timeService.currentDate;
+  }
+
+  addEvent(year: number, month: number, week: number, day: number) {
+    let date = new TimePeriod(year, month, week, day);
   }
 
 }

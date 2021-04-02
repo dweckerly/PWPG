@@ -70,9 +70,15 @@ const scout = {
     description: "Search for and sign contracts with talented performers to star in your events.",
     options: [
         {
-            name: ""
+            name: "",
+            description: "Check local "
         },
-        {}
+        {
+            
+        },
+        {
+
+        }
     ]
 }
 

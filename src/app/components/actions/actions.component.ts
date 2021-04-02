@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ACTIONS } from 'src/app/data/actions.data';
 
 @Component({
   selector: 'app-actions',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActionsComponent implements OnInit {
 
-  
+  actions = ACTIONS;
 
   constructor() { }
 

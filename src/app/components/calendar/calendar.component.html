@@ -1,4 +1,4 @@
-<div class="calendar-wrapper">
+<div class="calendar-wrapper component-wrapper">
     <div class="year-wrapper" *ngFor="let year of years">
         <div class="year-label-container text-center">
             <p class="year-label">Year {{year}}</p>
@@ -8,10 +8,10 @@
             <div class="week-wrapper" *ngFor="let week of weeks">
                 <p class="week-label">Week {{week}}</p>
                 <div class="days-wrapper flex">
-                    <div class="day" *ngFor="let day of days">
+                    <div [ngClass]="{'day' : true, 'current' : isCurrentDay(year, month, week, day)}" [attr.data-year]="year" [attr.data-month]="month" [attr.data-week]="week" [attr.data-day]="day" *ngFor="let day of days">
                         <p class="day-label">{{dayArray[day]}}</p>
                         <div class="text-center">
-                            <button (onclick)="addEvent(year, month, week, day)" class="add-event-btn">+</button>
+                            <button (click)="addEvent(year, month, week, day)" class="add-event-btn">+</button>
                         </div>
                     </div>
                 </div>

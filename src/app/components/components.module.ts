@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { ModalModule } from './modal/modal.module';
 import { ActionsComponent } from './actions/actions.component';
 import { AssetsComponent } from './assets/assets.component';
+import { BusinessLevelPipe } from '../pipes/business-level.pipe';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { AssetsComponent } from './assets/assets.component';
     ControlPanelComponent,
     HeaderComponent,
     ActionsComponent,
-    AssetsComponent
+    AssetsComponent,
+    BusinessLevelPipe
   ],
   imports: [
     CommonModule,

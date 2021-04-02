@@ -35,3 +35,8 @@ body {
 .show {
     display: block;
 }
+
+.component-wrapper {
+    height: 60vh;
+    overflow: auto;
+}

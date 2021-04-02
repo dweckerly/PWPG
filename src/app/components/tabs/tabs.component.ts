@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class TabsComponent {
   constructor(private router: Router) {}
 
-
   routeToTab(route: string) {
     this.router.navigateByUrl(route);
   }
