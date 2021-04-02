@@ -21,6 +21,10 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  get getCurrentDate() {
+    return this.timeService.currentDate;
+  }
+
   isCurrentDay(y, m, w, d): boolean {
     let date = this.getCurrentDate;
     if(date.year === y && date.month === m && date.week === w && date.day === d) {
@@ -29,12 +33,26 @@ export class CalendarComponent implements OnInit {
     return false;
   }
 
-  get getCurrentDate() {
-    return this.timeService.currentDate;
+  isPastDay(y, m, w, d): boolean {
+    let date = this.getCurrentDate;
+    if(date.year > y) {
+      return true;
+    }
+    else if(date.year == y && date.month > m) {
+      return true;
+    }
+    else if(date.year == y && date.month == m && date.week > w) {
+      return true;
+    }
+    else if(date.year == y && date.month == m && date.week == w && date.day > d) {
+      return true;
+    }
+    return false;
   }
 
   addEvent(year: number, month: number, week: number, day: number) {
     let date = new TimePeriod(year, month, week, day);
+    this.timeService.updateTime(date);
   }
 
 }

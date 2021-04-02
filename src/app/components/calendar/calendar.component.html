@@ -8,9 +8,9 @@
             <div class="week-wrapper" *ngFor="let week of weeks">
                 <p class="week-label">Week {{week}}</p>
                 <div class="days-wrapper flex">
-                    <div [ngClass]="{'day' : true, 'current' : isCurrentDay(year, month, week, day)}" [attr.data-year]="year" [attr.data-month]="month" [attr.data-week]="week" [attr.data-day]="day" *ngFor="let day of days">
+                    <div [ngClass]="{'day' : true, 'current' : isCurrentDay(year, month, week, day), 'past' : isPastDay(year, month, week, day)}" [attr.data-year]="year" [attr.data-month]="month" [attr.data-week]="week" [attr.data-day]="day" *ngFor="let day of days">
                         <p class="day-label">{{dayArray[day]}}</p>
-                        <div class="text-center">
+                        <div class="text-center" *ngIf="!isPastDay(year, month, week, day)">
                             <button (click)="addEvent(year, month, week, day)" class="add-event-btn">+</button>
                         </div>
                     </div>
