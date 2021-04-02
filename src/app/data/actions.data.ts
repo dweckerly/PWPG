@@ -62,7 +62,7 @@ const promote = {
             attention: 6,
             requirements: [
                 {
-                    attributeName: "businessLevel", 
+                    attributeName: "businessSize", 
                     value: 1
                 }
             ]
@@ -139,7 +139,7 @@ const hire = {
             description: "Hire designers to create promotional material and build your brand.",
             requirements: [
                 {
-                    attributeName: "businessLevel", 
+                    attributeName: "businessSize", 
                     value: 1
                 }
             ]
@@ -149,7 +149,7 @@ const hire = {
             description: "",
             requirements: [
                 {
-                    attributeName: "businessLevel", 
+                    attributeName: "businessSize", 
                     value: 1
                 }
             ]
@@ -159,7 +159,7 @@ const hire = {
             description: "Keep your assets safe from lawsuits with a suite of lawyers at your service.",
             requirements: [
                 {
-                    attributeName: "businessLevel", 
+                    attributeName: "businessSize", 
                     value: 2
                 }
             ]
@@ -169,7 +169,7 @@ const hire = {
             description: "Procure creative minds to gain access to new angles.",
             requirements: [
                 {
-                    attributeName: "businessLevel", 
+                    attributeName: "businessSize", 
                     value: 2
                 }
             ]
@@ -184,7 +184,9 @@ const book = {
         {
             name: "Backyard",
             description: "",
-            cost: 20,
+            cost: {
+                money: 20
+            },
             capacity: 40,
             augments: null,
             requirements: null
@@ -192,7 +194,9 @@ const book = {
         {
             name: "Warehouse",
             description: "",
-            cost: 50,
+            cost: {
+                money: 50
+            },
             capacity: 120,
             augments: null,
             requirements: null
@@ -200,7 +204,9 @@ const book = {
         {
             name: "Strip Club",
             description: "",
-            cost: 150,
+            cost: {
+                money: 150
+            },
             capacity: 120,
             augments: null,
             requirements: null
@@ -208,7 +214,9 @@ const book = {
         {
             name: "Bingo Parlor",
             description: "",
-            cost: 100,
+            cost: {
+                money: 100
+            },
             capacity: 160,
             augments: null,
             requirements: null
@@ -216,12 +224,14 @@ const book = {
         {
             name: "School Gymnasium",
             description: "",
-            cost: 200,
+            cost: {
+                money: 200
+            },
             capacity: 250,
             augments: null,
             requirements: [
                 {
-                    attributeName: "businessLevel", 
+                    attributeName: "businessSize", 
                     value: 1
                 }
             ]
@@ -236,56 +246,72 @@ const purchase = {
         {
             name: "Portable Ring Ropes",
             description: "",
-            cost: 125,
+            cost: {
+                money: 125
+            },
             type: "ring",
             augments: null
         },
         {
             name: "Canvas Mat Floor Ring",
             description: "",
-            cost: 375,
+            cost: {
+                money: 375
+            },
             type: "ring",
             augments: null
         },
         {
             name: "12-Foot Sports Mat Ring with Frame",
             description: "",
-            cost: 2050,
+            cost: {
+                money: 2050
+            },
             type: "ring",
             augments: null
         },
         {
             name: "16-Foot Deluxe Ring",
             description: "",
-            cost: 5475,
+            cost: {
+                money: 5475
+            },
             type: "ring",
             augments: null
         },
         {
             name: "20-Foot Professional Competition Ring",
             description: "",
-            cost: 8900,
+            cost: {
+                money: 8900
+            },
             type: "ring",
             augments: null
         },
         {
             name: "Entryway Curtains",
             description: "",
-            cost: 325,
+            cost: {
+                money: 325
+            },
             type: "decor",
             augments: null
         },
         {
             name: "Custom Ring Floor Print",
             description: "",
-            cost: 500,
+            cost: {
+                money: 500
+            },
             type: "decor",
             augments: null
         },
         {
             name: "Custom Printed Ring Skirt",
             description: "",
-            cost: 625,
+            cost: {
+                money: 625
+            },
             type: "decor",
             augments: null
         },

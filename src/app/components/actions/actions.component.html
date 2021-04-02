@@ -1,15 +1,20 @@
-<div class="component-wrapper">
-    <div class="actions-container">
-        <div class="action-title-grid">
-            <div class="action-title-wrapper" *ngFor="let action of actions" (click)="showAction(action.name)">
-                <p class="action-title">{{action.name}}</p>
-                <p class="desc-text action-desc">{{action.description}}</p>
-            </div>
+<div class="actions-container">
+    <div class="action-title-grid">
+        <div class="action-title-wrapper" *ngFor="let action of actions" (click)="showAction(action.name)">
+            <p class="action-title">{{action.name}}</p>
+            <p class="desc-text action-desc">{{action.description}}</p>
         </div>
-        <div class="action-details-grid">
-            <div class="action-details-wrapper" *ngFor="let action of actions" [ngClass]="(activeAction == action.name)? 'show' : 'hide'">
+    </div>
+    <div class="action-details-grid">
+        <div class="action-details-wrapper component-wrapper" *ngFor="let action of actions" [ngClass]="(activeAction == action.name)? 'show' : 'hide'">
+            <div class="action-options flex-fill" [ngClass]="(areRequirementsMet(option.requirements)) ? 'enabled-action' : 'disabled-action'" *ngFor="let option of action.options">
                 <div>
-                    {{action.name}}
+                    <p class="action-title">{{option.name}}</p>
+                    <p class="desc-text action-desc">{{option.description}}</p>
+                </div>
+                <div class="cost-container" *ngIf="option.cost != null">
+                    <p class="desc-text" *ngIf="option.cost.time != null">Time: {{option.cost.time[0].amount}} {{option.cost.time[0].period}}</p>
+                    <p class="desc-text" *ngIf="option.cost.money != null">Money: ${{option.cost.money}}</p>
                 </div>
             </div>
         </div>

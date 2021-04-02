@@ -11,6 +11,7 @@ export class PlayerService {
   money: number;
   hype: number;
   businessSize: number;
+  player: Player;
   
   playerObjectChange: Subject<Player> = new Subject<Player>();  
 
@@ -21,10 +22,12 @@ export class PlayerService {
       this.hype = value.hype;
       this.businessSize = value.businessSize;
     });
+    this.player = new Player(this.name, this.money, this.hype, this.businessSize);
   }
 
   updatePlayerObject(player: Player) {
     this.playerObjectChange.next(player);
     this.localStorageService.set("player", player);
+    this.player = player;
   }
 }
