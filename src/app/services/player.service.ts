@@ -7,22 +7,22 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class PlayerService {
-  name: string;
-  money: number;
-  hype: number;
-  businessSize: number;
   player: Player;
   
   playerObjectChange: Subject<Player> = new Subject<Player>();  
 
   constructor(private localStorageService: LocalStorageService) {
+    this.player = this.localStorageService.get("player");
     this.playerObjectChange.subscribe(value => {
-      this.name = value.name;
-      this.money = value.money;
-      this.hype = value.hype;
-      this.businessSize = value.businessSize;
+      if(value != null) {
+        this.player = new Player(value.name, value.money, value.hype, value.businessSize);
+      }
     });
-    this.player = new Player(this.name, this.money, this.hype, this.businessSize);
+  }
+
+  updateMoney(amount:number) {
+    let newMoney = this.player.money + amount
+    this.updatePlayerObject(new Player(this.player.name, newMoney, this.player.hype, this.player.businessSize))
   }
 
   updatePlayerObject(player: Player) {

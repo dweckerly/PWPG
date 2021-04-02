@@ -7,10 +7,6 @@ import { LocalStorageService } from './local-storage.service';
   providedIn: 'root'
 })
 export class TimeService {
-  year: number = 1;
-  month: number = 1;
-  week: number = 1;
-  day: number = 0;
   currentDate: TimePeriod;
 
   timeChange: Subject<TimePeriod> = new Subject<TimePeriod>();
@@ -19,13 +15,29 @@ export class TimeService {
     this.currentDate = this.localStorageService.get("time");
     this.timeChange.subscribe(value => {
       if(value !== null) {
-        this.year = value.year;
-        this.month = value.month;
-        this.week = value.week;
-        this.day = value.day;
-        this.currentDate = new TimePeriod(this.year, this.month, this.week, this.day);
+        this.currentDate = new TimePeriod(value.year, value.month, value.week, value.day);
       }
     });
+  }
+
+  advanceByDays(amount: number) {
+    let newDay = this.currentDate.day + amount;
+    let newWeek = this.currentDate.week;
+    let newMonth = this.currentDate.month;
+    let newYear = this.currentDate.year;
+    if(newDay > 6) {
+      newWeek++;
+      newDay -= 7;
+      if(newWeek > 4) {
+        newMonth++;
+        newWeek -= 4;
+        if(newMonth > 12) {
+          newYear++;
+          newMonth -= 12
+        }
+      }
+    }
+    this.updateTime(new TimePeriod(newYear, newMonth, newWeek, newDay));
   }
 
   updateTime(time: TimePeriod) {

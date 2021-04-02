@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ACTIONS } from 'src/app/data/actions.data';
 import { ActionService } from 'src/app/services/action.service';
 import { PlayerService } from 'src/app/services/player.service';
+import { TimeService } from 'src/app/services/time.service';
 
 @Component({
   selector: 'app-actions',
@@ -15,7 +16,12 @@ export class ActionsComponent implements OnInit {
   activeAction = "Scout";
   activePurchaseCategory = "*"
 
-  constructor(private playerService: PlayerService, private router: Router, private actionService: ActionService) { }
+  constructor(
+    private playerService: PlayerService, 
+    private router: Router, 
+    private actionService: ActionService,
+    private timeService: TimeService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -60,25 +66,30 @@ export class ActionsComponent implements OnInit {
     this.activePurchaseCategory = category;
   }
 
-  actionBtnClick(action) {
-    if(action.name === 'Scout') {
+  actionBtnClick(name, action) {
+    if(action.cost != null) {
+      if(action.cost.time != null) {
+        this.timeService.advanceByDays(action.cost.time.amount)
+      }
+      if(action.cost.money != null) {
+        this.playerService.updateMoney(-action.cost.money)
+      }
+    }
+    if(name === 'Scout') {
+      this.actionService.updateAction(action);
       this.router.navigateByUrl('/scout');
     }
-    else if(action.name === 'Book') {
+    else if(name === 'Book') {
 
     }
-    else if(action.name === 'Promote') {
+    else if(name === 'Promote') {
 
     }
-    else if(action.name === 'Hire') {
+    else if(name === 'Hire') {
 
     }
-    else if(action.name === 'Purchase') {
+    else if(name === 'Purchase') {
 
     }
-  }
-
-  scoutAction(action) {
-
   }
 }

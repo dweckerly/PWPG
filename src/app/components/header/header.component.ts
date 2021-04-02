@@ -11,18 +11,18 @@ export class HeaderComponent {
   constructor(private playerService: PlayerService) {}
 
   get getPlayerOrgName() {
-    return this.playerService.name;
+    return this.playerService.player.name;
   }
 
   get getPlayerMoney() {
-    return this.playerService.money;
+    return this.playerService.player.money;
   }
 
   get getPlayerHype() {
-    return this.playerService.hype;
+    return this.playerService.player.hype;
   }
 
   get getPlayerBusinessSize() {
-    return this.playerService.businessSize;
+    return this.playerService.player.businessSize;
   }
 }

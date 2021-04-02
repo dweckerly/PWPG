@@ -28,12 +28,12 @@
                         <p class="desc-text">Category: {{option.type}}</p>
                     </div>
                     <div class="cost-container" *ngIf="option.cost != null">
-                        <p class="desc-text" *ngIf="option.cost.time != null">Time: {{option.cost.time[0].amount}} {{option.cost.time[0].period}}</p>
+                        <p class="desc-text" *ngIf="option.cost.time != null">Time: {{option.cost.time.amount}} {{option.cost.time.period}}</p>
                         <p class="desc-text" *ngIf="option.cost.money != null">Money: ${{option.cost.money}}</p>
                     </div>
                 </div>
                 <div class="action-btn-wrapper text-center" *ngIf="areRequirementsMet(option.requirements) && hasEnoughMoney(option.cost)">
-                    <button class="action-btn" (click)="actionBtnClick(action)">{{action.name}}</button>
+                    <button class="action-btn" (click)="actionBtnClick(action.name, option)">{{action.name}}</button>
                 </div>
             </div>
         </div>

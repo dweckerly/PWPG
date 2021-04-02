@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { Player } from './objects/player';
 import { TimePeriod } from './objects/time/time-period';
-import { GeneratorService } from './services/generator.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { PlayerService } from './services/player.service';
 import { TimeService } from './services/time.service';
@@ -48,6 +47,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.playerService.updatePlayerObject(player);
     let startTime = new TimePeriod(1, 1, 1, 0);
     this.timeService.updateTime(startTime);
-    this.router.navigateByUrl('/actions');
+    location.reload();
   }
 }

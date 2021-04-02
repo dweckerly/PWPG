@@ -7,12 +7,10 @@ const promote = {
             description: "Create and distribute flyers.",
             cost: {
                 money: 10,
-                time: [
-                    {
-                        amount: 1,
-                        period: "day"
-                    }
-                ]
+                time: {
+                    amount: 1,
+                    period: "day"
+                }
             },
             attention: 1,
             requirements: null
@@ -22,12 +20,10 @@ const promote = {
             description: "Design an advertisement to be run in local newspapers.",
             cost: {
                 money: 150,
-                time: [
-                    {
-                        amount: 2,
-                        period: "day"
-                    }
-                ]
+                time: {
+                    amount: 2,
+                    period: "day"
+                }
             },
             attention: 3,
             requirements: null
@@ -37,12 +33,10 @@ const promote = {
             description: "Record a promotion and distribute it to radio stations.",
             cost: {
                 money: 250,
-                time: [
-                    {
-                        amount: 1,
-                        period: "day"
-                    }
-                ]
+                time: {
+                    amount: 1,
+                    period: "day"
+                }
             },
             attention: 3,
             requirements: null
@@ -52,12 +46,10 @@ const promote = {
             description: "",
             cost: {
                 money: 1000,
-                time: [
-                    {
-                        amount: 5,
-                        period: "day"
-                    }
-                ]
+                time: {
+                    amount: 5,
+                    period: "day"
+                }
             },
             attention: 6,
             requirements: [
@@ -80,11 +72,27 @@ const scout = {
             description: "Check local bars for ruffians willing to fight in your events.",
             cost: {
                 money: null,
-                time: [
+                time: {
+                    amount: 1,
+                    period: "day"
+                }
+            },
+            generativeParams: {
+                tiers: ['c', 'd'],
+                maxAmount: 5,
+                types: [
                     {
-                        amount: 1,
-                        period: "day"
-                    }
+                        name: 'hardcore',
+                        chance: 'high'
+                     },
+                     {
+                        name: 'generalist',
+                        chance: 'medium'
+                     },
+                     {
+                         name: 'actor',
+                         chance: 'low'
+                     }
                 ]
             },
             requirements: null
@@ -94,11 +102,27 @@ const scout = {
             description: "Find fit performers at local gyms.",
             cost: {
                 money: null,
-                time: [
+                time: {
+                    amount: 1,
+                    period: "day"
+                }
+            },
+            generativeParams: {
+                tiers: ['b', 'c', 'd'],
+                maxAmount: 4,
+                types: [
                     {
-                        amount: 1,
-                        period: "day"
-                    }
+                        name: 'striker',
+                        chance: 'medium'
+                     },
+                     {
+                        name: 'generalist',
+                        chance: 'medium'
+                     },
+                     {
+                         name: 'acrobat',
+                         chance: 'low'
+                     }
                 ]
             },
             requirements: null
@@ -108,11 +132,31 @@ const scout = {
             description: "Attend a local sporting event and offer contracts to athletes.",
             cost: {
                 money: 15,
-                time: [
+                time: {
+                    amount: 1,
+                    period: "day"
+                }
+            },
+            generativeParams: {
+                tiers: ['b', 'c', 'd'],
+                maxAmount: 4,
+                types: [
                     {
-                        amount: 1,
-                        period: "day"
-                    }
+                        name: 'striker',
+                        chance: 'medium'
+                     },
+                     {
+                        name: 'generalist',
+                        chance: 'medium'
+                     },
+                     {
+                         name: 'acrobat',
+                         chance: 'medium'
+                     },
+                     {
+                        name: 'technician',
+                        chance: 'low'
+                     }
                 ]
             },
             requirements: null
