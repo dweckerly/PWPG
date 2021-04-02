@@ -33,4 +33,17 @@ export class ActionsComponent implements OnInit {
     return true;
   }
 
+  hasEnoughMoney(cost) {
+    if(cost != null) {
+      let money = cost.money;
+      if(money != null && money > 0) {
+        let player = this.playerService.player;
+        if(player.money < money) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
 }

@@ -7,7 +7,7 @@
     </div>
     <div class="action-details-grid">
         <div class="action-details-wrapper component-wrapper" *ngFor="let action of actions" [ngClass]="(activeAction == action.name)? 'show' : 'hide'">
-            <div class="action-options flex-fill" [ngClass]="(areRequirementsMet(option.requirements)) ? 'enabled-action' : 'disabled-action'" *ngFor="let option of action.options">
+            <div class="action-options flex-fill" [ngClass]="{'disabled-action' : !areRequirementsMet(option.requirements) || !hasEnoughMoney(option.cost)}" *ngFor="let option of action.options">
                 <div>
                     <p class="action-title">{{option.name}}</p>
                     <p class="desc-text action-desc">{{option.description}}</p>
