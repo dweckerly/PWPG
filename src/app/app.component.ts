@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { Player } from './objects/player';
 import { TimePeriod } from './objects/time/time-period';
@@ -22,13 +23,16 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(
     private playerService: PlayerService,
     private timeService: TimeService,
-    private localStorageService: LocalStorageService
+    private localStorageService: LocalStorageService,
+    private router: Router
     ) {}
 
   ngOnInit() {
     this.player = this.localStorageService.get("player")
-    if(this.player !== null)
+    if(this.player !== null) {
       this.playerService.updatePlayerObject(this.player);
+      this.router.navigateByUrl('/actions');
+    }
   }
 
   ngAfterViewInit() {
@@ -43,6 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     let player = new Player(name, 100, 0, 0);
     this.playerService.updatePlayerObject(player);
     let startTime = new TimePeriod(1, 1, 1, 0);
-    this.timeService.updateTime(startTime)
+    this.timeService.updateTime(startTime);
+    this.router.navigateByUrl('/actions');
   }
 }

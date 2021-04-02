@@ -11,6 +11,7 @@ import { ModalModule } from './modal/modal.module';
 import { ActionsComponent } from './actions/actions.component';
 import { AssetsComponent } from './assets/assets.component';
 import { BusinessLevelPipe } from '../pipes/business-level.pipe';
+import { EmployeesComponent } from './employees/employees.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { BusinessLevelPipe } from '../pipes/business-level.pipe';
     HeaderComponent,
     ActionsComponent,
     AssetsComponent,
-    BusinessLevelPipe
+    BusinessLevelPipe,
+    EmployeesComponent
   ],
   imports: [
     CommonModule,
