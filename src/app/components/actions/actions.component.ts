@@ -9,10 +9,15 @@ import { ACTIONS } from 'src/app/data/actions.data';
 export class ActionsComponent implements OnInit {
 
   actions = ACTIONS;
+  activeAction = "Scout";
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  showAction(name: string) {
+    this.activeAction = name;
   }
 
 }

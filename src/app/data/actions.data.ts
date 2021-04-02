@@ -231,7 +231,7 @@ const book = {
 
 const purchase = {
     name: "Purchase",
-    description: "Buy essential items for your events.",
+    description: "Buy essential items for your business.",
     options: [
         {
             name: "Portable Ring Ropes",

@@ -1,8 +1,17 @@
 <div class="component-wrapper">
     <div class="actions-container">
-        <div class="action-wrapper" *ngFor="let action of actions">
-            <p>{{action.name}}</p>
-            <p class="desc-text">{{action.description}}</p>
+        <div class="action-title-grid">
+            <div class="action-title-wrapper" *ngFor="let action of actions" (click)="showAction(action.name)">
+                <p class="action-title">{{action.name}}</p>
+                <p class="desc-text action-desc">{{action.description}}</p>
+            </div>
+        </div>
+        <div class="action-details-grid">
+            <div class="action-details-wrapper" *ngFor="let action of actions" [ngClass]="(activeAction == action.name)? 'show' : 'hide'">
+                <div>
+                    {{action.name}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
