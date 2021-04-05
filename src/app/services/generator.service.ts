@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
 
-import { NAMES, ORG_NAMES } from '../data/generator.data';
-
+import { ORG_NAMES } from '../data/names/org-names.data';
+import { NAMES } from '../data/names/names-english.data';
+import { Wrestler } from '../objects/wrestler';
+import { MONIKERS } from '../data/names/monikers.data';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GeneratorService {
   names = NAMES; 
+  monikers = MONIKERS;
+
+  genderChanceThreshold: number = 0.79;
+  uniqueWrestlerChance: number = 0.01
+  
   orgDefaultAmount: number = 10;
+  wrestlerDeafultAmount: number = 50;
+
+  tiers = ['s', 'a', 'b', 'c', 'd']
 
   generateOrgNames(orgAmount?: number) {
     let orgs: string[] = [];
@@ -47,13 +57,12 @@ export class GeneratorService {
   }
 
   generateName(genderInput?: string): string {
-    let genderChanceThreshold = 0.79;
     let gender = null;
     if(genderInput !== undefined) {
       gender = genderInput;
     }
     else {
-      gender = (Math.random() > genderChanceThreshold) ? 'female' : 'male';
+      gender = (Math.random() > this.genderChanceThreshold) ? 'female' : 'male';
     }
     let firstNamesLength = this.names[gender].length;
     let firstNameIndex = this.getRandomInt(firstNamesLength);
@@ -68,10 +77,17 @@ export class GeneratorService {
     return firstName + " " + lastName;
   }
 
-  generateWrestler(specificType?: string, specificTier?: string, lowerTiersToo?: boolean) {
+  generateWrestlers() {
+    if(this.isUniqueWrestler()) {
 
+    } else {
+
+    }
   }
 
+  private isUniqueWrestler (): boolean {
+    return Math.random() < this.uniqueWrestlerChance ? true : false;
+  } 
 
   private getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
