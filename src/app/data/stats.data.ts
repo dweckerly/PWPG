@@ -3,7 +3,8 @@ export const STATS = [
     "aerial",
     "hardcore",
     "charisma",
-    "technical"
+    "technical",
+    "power"
 ]
 
 export const TEMPLATES = [

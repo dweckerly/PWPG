@@ -5,6 +5,7 @@ import { NAMES } from '../data/names/names-english.data';
 import { Wrestler } from '../objects/wrestler';
 import { MONIKERS } from '../data/names/monikers.data';
 import { TIERRANGES } from '../data/tier-ranges.data';
+import { STATS } from '../data/stats.data';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +17,14 @@ export class GeneratorService {
   genderChanceThreshold: number = 0.79;
   uniqueWrestlerChance: number = 0.01;
   monikerChance: number = 0.8;
+  goesByMonikerChance: number = 0.2;
   
   orgDefaultAmount: number = 10;
-  wrestlerDeafultAmount: number = 50;
 
-  maxnormalValue = 3;
+  tiers = ['s', 'a', 'b', 'c'];
+  stats = STATS;
+
+  maxNormalValue = 4;
 
   generateOrgNames(orgAmount?: number) {
     let orgs: string[] = [];
@@ -81,90 +85,52 @@ export class GeneratorService {
 
   generateWrestlers() {
     let wrestlers = [];
-    for(let i = 0; i < this.wrestlerDeafultAmount; i++) {
-      // get range beased on tier
-      let tierIndex = this.getRandomInt(4);
-      let tier = TIERRANGES[tierIndex].label;
-      let statRange = TIERRANGES[tierIndex].range;
-      let modifier = TIERRANGES[tierIndex].modifier;
-      let tierStats = [];
-      let w = new Wrestler();
-      console.log(w);
-
-      // choose 1-3 random stats (may be duplicates)
-      tierStats.push(this.getRandomInt(5));
-      tierStats.push(this.getRandomInt(5));
-      tierStats.push(this.getRandomInt(5));
-
-      // apply tier based ranges
-      // apply modifer to other stats
-      let stats = [];
-      for(let j = 0; j < 6; j++) {
-        if(j in tierStats) {
-          stats.push(this.getRandomIntRange(statRange[0], statRange[1]));
-        }
-        else {
-          stats.push(this.getRandomInt(this.maxnormalValue) + modifier);
+    // generate wrestler for each moniker in tiers s through c
+    for(let i = 0; i < this.tiers.length; i++) {
+      for(let j = 0; j < this.stats.length; j++) {
+        let tier = this.tiers[i];
+        let maxStat = this.stats[j];
+        while(this.monikers[maxStat][tier].length > 0) {
+          let index = this.getRandomInt(this.monikers[maxStat][tier].length)
+          let moniker = this.monikers[maxStat][tier][index];
+          this.monikers[maxStat][tier].splice(index, 1);
+          let wrestlerName = "";
+          if(Math.random() < this.goesByMonikerChance) {
+            wrestlerName = moniker;
+          }
+          else {
+            let name = this.generateName('male');
+            let firstAndLast = name.split(" ");
+            wrestlerName = firstAndLast[0] + " '" + moniker + "' " + firstAndLast[1];
+          }
+          let w = new Wrestler();
+          w.name = wrestlerName;
+          // generate stats
+          wrestlers.push(w);
         }
       }
-      // set stats
-      w.stats.striking = stats[0];
-      w.stats.aerial = stats[1];
-      w.stats.hardcore = stats[2];
-      w.stats.charisma = stats[3];
-      w.stats.technical = stats[4];
-      w.stats.power = stats[5];
-
-      // generate name
-      let max = 0;
-      let maxStat = "";
-      let moniker = "";
-
-      if(this.monikerChance > Math.random()) {
-        if(tier != 'd') {
-          if(stats[0] > max) {
-            maxStat = "striking";
-            max = stats[0];
-          }
-          if(stats[1] > max) {
-            maxStat = "aerial";
-            max = stats[1];
-          }
-          if(stats[2] > max) {
-            maxStat = "hardcore";
-            max = stats[2];
-          }
-          if(stats[3] > max) {
-            maxStat = "charisma";
-            max = stats[3];
-          }
-          if(stats[4] > max) {
-            maxStat = "technical";
-            max = stats[4];
-          }
-          if(stats[5] > max) {
-            maxStat = "power";
-            max = stats[5];
-          }
-          let index = this.getRandomInt(this.monikers[maxStat][tier].length);
-          moniker = this.monikers[maxStat][tier][index];
-          this.monikers[maxStat][tier].splice(index, 1);
-        }
-        else {
-          let index = this.getRandomInt(this.monikers.d.length);
-          moniker = this.monikers.d[index];
-          this.monikers.d.splice(index, 1);
-        }
-        let name = this.generateName('male');
-        let firstAndLast = name.split(" ");
-        let wrestlerName = firstAndLast[0] + " " + moniker + " " + firstAndLast[1];
-        w.name = wrestlerName;
+    }
+    // generate wrestler for each moniker in tier d
+    while(this.monikers.d.length > 0) {
+      let index = this.getRandomInt(this.monikers.d.length)
+      let moniker = this.monikers.d[index];
+      this.monikers.d.splice(index, 1);
+      let wrestlerName = "";
+      if(Math.random() < this.goesByMonikerChance) {
+        wrestlerName = moniker;
       }
       else {
-        w.name = this.generateName('male');
+        let name = this.generateName('male');
+        let firstAndLast = name.split(" ");
+        wrestlerName = firstAndLast[0] + " '" + moniker + "' " + firstAndLast[1];
       }
+      let w = new Wrestler();
+      w.name = wrestlerName;
+      // generate stats
       wrestlers.push(w);
     }
+    // generate wrestlers with no moniker
+
     return wrestlers;
   }
 
