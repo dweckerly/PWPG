@@ -74,5 +74,86 @@ export const purchase = {
             type: "decor",
             augments: null
         },
+        {
+            name: "Entry Curtain, 8ft",
+            description: "",
+            cost: {
+                money: 100
+            },
+            type: "decor",
+            augments: null
+        },
+        {
+            name: "Entry Curtain, 20ft",
+            description: "",
+            cost: {
+                money: 750
+            },
+            type: "decor",
+            augments: null
+        },
+        {
+            name: "Disco Party Ball Strobe Light",
+            description: "",
+            cost: {
+                money: 20
+            },
+            type: "lighting",
+            augments: null
+        },
+        {
+            name: "Par Can Stage Light Fixture",
+            description: "",
+            cost: {
+                money: 50
+            },
+            type: "lighting",
+            augments: null
+        },
+        {
+            name: "Mixed Beam Stage Lights, RGBY Sound Activated",
+            description: "",
+            cost: {
+                money: 160
+            },
+            type: "lighting",
+            augments: null
+        },
+        {
+            name: "Fog Machine, Mini",
+            description: "",
+            cost: {
+                money: 30
+            },
+            type: "effects",
+            augments: null
+        },
+        {
+            name: "Fog Machine, 3000 cu.ft. with LED",
+            description: "",
+            cost: {
+                money: 200
+            },
+            type: "effects",
+            augments: null
+        },
+        {
+            name: "Spinning Cold Spark Machine",
+            description: "",
+            cost: {
+                money: 2500
+            },
+            type: "effects",
+            augments: null
+        },
+        {
+            name: "Pro Pyro Liquid Flame Unit",
+            description: "",
+            cost: {
+                money: 5000
+            },
+            type: "effects",
+            augments: null
+        },
     ]
 }
