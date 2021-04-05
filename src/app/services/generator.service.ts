@@ -15,7 +15,6 @@ export class GeneratorService {
   monikers = MONIKERS;
 
   genderChanceThreshold: number = 0.79;
-  uniqueWrestlerChance: number = 0.01;
   monikerChance: number = 0.8;
   goesByMonikerChance: number = 0.2;
   
@@ -25,6 +24,8 @@ export class GeneratorService {
   stats = STATS;
 
   maxNormalValue = 4;
+
+  ageModifier = 2;
 
   generateOrgNames(orgAmount?: number) {
     let orgs: string[] = [];
@@ -106,13 +107,9 @@ export class GeneratorService {
           let w = new Wrestler();
           w.name = wrestlerName;
           // generate stats
-          w.stats.striking = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
-          w.stats.aerial = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
-          w.stats.hardcore = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
-          w.stats.charisma = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
-          w.stats.technical = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
-          w.stats.power = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
-          w.stats[maxStat] = this.getRandomIntRange(TIERRANGES[tier].range[0], TIERRANGES[tier].range[1]) + (TIERRANGES[tier].modifier / 2);
+          this.generateStats(w, tier, maxStat);
+          this.generateAge(w);
+          this.generateHeightAndWeight(w);
           wrestlers.push(w);
         }
       }
@@ -134,12 +131,9 @@ export class GeneratorService {
       let w = new Wrestler();
       w.name = wrestlerName;
       // generate stats
-      w.stats.striking = this.getRandomInt(this.maxNormalValue);
-      w.stats.aerial = this.getRandomInt(this.maxNormalValue);
-      w.stats.hardcore = this.getRandomInt(this.maxNormalValue);
-      w.stats.charisma = this.getRandomInt(this.maxNormalValue);
-      w.stats.technical = this.getRandomInt(this.maxNormalValue);
-      w.stats.power = this.getRandomInt(this.maxNormalValue);
+      this.generateStats(w, 'd');
+      this.generateAge(w);
+      this.generateHeightAndWeight(w);
       wrestlers.push(w);
     }
     // generate wrestlers with no moniker
@@ -147,9 +141,91 @@ export class GeneratorService {
     return wrestlers;
   }
 
-  private isUniqueWrestler (): boolean {
-    return Math.random() < this.uniqueWrestlerChance ? true : false;
-  } 
+  private generateStats(w: Wrestler, tier: string, maxStat?: string) {
+    w.stats.striking = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+    w.stats.aerial = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+    w.stats.hardcore = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+    w.stats.charisma = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+    w.stats.technical = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+    w.stats.power = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+    if(maxStat) {
+      w.stats[maxStat] = this.getRandomIntRange(TIERRANGES[tier].range[0], TIERRANGES[tier].range[1]) + (TIERRANGES[tier].modifier / 2);
+    }
+  }
+
+  private generateAge(w: Wrestler) {
+    let chance = Math.random();
+    if(chance > 0.8) {
+      w.age = this.getRandomIntRange(44, 51);
+      if(chance > 0.95) {
+        w.age = this.getRandomIntRange(51, 65);
+        let p = w.stats.power - this.ageModifier;
+        if(p < 0)
+          p = 0;
+        w.stats.power = p;
+      }
+    }
+    else if(chance > 0.2) {
+      w.age = this.getRandomIntRange(26, 44);
+    }
+    else {
+      w.age = this.getRandomIntRange(17, 26);
+      w.stats.charisma += this.ageModifier;
+    }
+  }
+
+  private generateHeightAndWeight(w: Wrestler) {
+    let chance = Math.random();
+    let feet;
+    let inches;
+    if(chance > 0.75) {
+      feet = 5;
+      let inchChance = Math.random();
+      if(inchChance > 0.8) {
+        inches = this.getRandomIntRange(2, 7);
+        w.stats.aerial += 2;
+        w.weight = 125 + this.getRandomInt(51);
+      }
+      else {
+        inches = this.getRandomIntRange(7, 12);
+        w.weight = 175 + this.getRandomInt(51);
+      }
+      inches = this.getRandomIntRange(7, 12);
+    } else if (chance < 0.02) {
+      feet = 7
+      inches = this.getRandomInt(5);
+      // very tall
+      w.stats.power += 3;
+      let a = w.stats.aerial - 2;
+      if(a < 0)
+        a = 0;
+      w.stats.aerial = a;
+      w.weight = 300 + this.getRandomInt(101);
+    }
+    else {
+      feet = 6
+      let inchChance = Math.random();
+      if(inchChance > 0.9) {
+        inches = this.getRandomIntRange(8, 12);
+        w.stats.power += 2;
+        let a = w.stats.aerial - 1;
+        if(a < 0)
+          a = 0;
+        w.stats.aerial = a;
+        w.weight = 250 + this.getRandomInt(101);
+      }
+      else if(inchChance < 0.1){
+        inches = this.getRandomIntRange(4, 8);
+        w.stats.power += 1;
+        w.weight = 225 + this.getRandomInt(76);
+      }
+      else {
+        inches = this.getRandomInt(4);
+        w.weight = 200 + this.getRandomInt(76);
+      }
+    }
+    w.height = feet + "'" + inches + '"';
+  }
 
   private getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));

@@ -68,7 +68,7 @@ export const MONIKERS = {
         c: [
             "SyCko SicKo",
             "The XXX Factor",
-            "Raw Chicken",
+            "Burnt Hair",
             "Yellow Snow",
         ]
     },
