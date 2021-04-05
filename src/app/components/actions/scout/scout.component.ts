@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActionService } from 'src/app/services/action.service';
 import { GeneratorService } from 'src/app/services/generator.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
-import { ActionsComponent } from '../actions.component';
 
 @Component({
   selector: 'app-scout',
