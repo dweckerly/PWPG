@@ -1,23 +1,23 @@
 export const TIERRANGES = {
     s: {
         label: 's',
-        range: [8, 11],
-        modifier: 4
+        range: [11, 15],
+        modifier: 8
     },
     a: {
         label: 'a',
-        range: [6, 9],
-        modifier: 3
+        range: [8, 12],
+        modifier: 6
     },
     b: {
         label: 'b',
-        range: [4, 7],
-        modifier: 2
+        range: [5, 9],
+        modifier: 4
     },
     c: {
         label: 'c',
-        range: [2, 5],
-        modifier: 1
+        range: [2, 6],
+        modifier: 2
     },
     d: {
         label: 'd',

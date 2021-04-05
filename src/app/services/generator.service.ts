@@ -106,6 +106,13 @@ export class GeneratorService {
           let w = new Wrestler();
           w.name = wrestlerName;
           // generate stats
+          w.stats.striking = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+          w.stats.aerial = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+          w.stats.hardcore = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+          w.stats.charisma = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+          w.stats.technical = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+          w.stats.power = this.getRandomInt(this.maxNormalValue) + TIERRANGES[tier].modifier;
+          w.stats[maxStat] = this.getRandomIntRange(TIERRANGES[tier].range[0], TIERRANGES[tier].range[1]) + (TIERRANGES[tier].modifier / 2);
           wrestlers.push(w);
         }
       }
@@ -127,6 +134,12 @@ export class GeneratorService {
       let w = new Wrestler();
       w.name = wrestlerName;
       // generate stats
+      w.stats.striking = this.getRandomInt(this.maxNormalValue);
+      w.stats.aerial = this.getRandomInt(this.maxNormalValue);
+      w.stats.hardcore = this.getRandomInt(this.maxNormalValue);
+      w.stats.charisma = this.getRandomInt(this.maxNormalValue);
+      w.stats.technical = this.getRandomInt(this.maxNormalValue);
+      w.stats.power = this.getRandomInt(this.maxNormalValue);
       wrestlers.push(w);
     }
     // generate wrestlers with no moniker
