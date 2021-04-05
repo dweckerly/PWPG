@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { Player } from './objects/player';
 import { TimePeriod } from './objects/time/time-period';
+import { GeneratorService } from './services/generator.service';
 import { LocalStorageService } from './services/local-storage.service';
 import { PlayerService } from './services/player.service';
 import { TimeService } from './services/time.service';
@@ -23,6 +24,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     private playerService: PlayerService,
     private timeService: TimeService,
     private localStorageService: LocalStorageService,
+    private generatorService: GeneratorService,
     private router: Router
     ) {}
 
@@ -47,6 +49,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.playerService.updatePlayerObject(player);
     let startTime = new TimePeriod(1, 1, 1, 0);
     this.timeService.updateTime(startTime);
+    let wrestlers = this.generatorService.generateWrestlers();
+    this.localStorageService.set("wrestlers", wrestlers);
     location.reload();
   }
 }

@@ -1,3 +1,11 @@
-<p>
-    {{action.name}}
-</p>
+<div class="text-center">
+    <p>
+        {{action.name}}
+    </p>
+    <ng-container *ngFor="let w of wrestlers">
+        <p>{{w.name}}</p>
+    </ng-container>
+    <ng-container *ngIf="wrestlers.length == 0">
+        <p>No one here :(</p>
+    </ng-container>
+</div>

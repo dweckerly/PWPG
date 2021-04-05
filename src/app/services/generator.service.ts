@@ -85,60 +85,70 @@ export class GeneratorService {
   }
 
   generateWrestlers() {
-    let wrestlers = [];
-    // generate wrestler for each moniker in tiers s through c
+    let wrestlers = {s:[], a:[], b:[], c:[], d:[]};
     for(let i = 0; i < this.tiers.length; i++) {
       for(let j = 0; j < this.stats.length; j++) {
         let tier = this.tiers[i];
         let maxStat = this.stats[j];
         while(this.monikers[maxStat][tier].length > 0) {
-          let index = this.getRandomInt(this.monikers[maxStat][tier].length)
-          let moniker = this.monikers[maxStat][tier][index];
-          this.monikers[maxStat][tier].splice(index, 1);
-          let wrestlerName = "";
-          if(Math.random() < this.goesByMonikerChance) {
-            wrestlerName = moniker;
-          }
-          else {
-            let name = this.generateName('male');
-            let firstAndLast = name.split(" ");
-            wrestlerName = firstAndLast[0] + " '" + moniker + "' " + firstAndLast[1];
-          }
           let w = new Wrestler();
-          w.name = wrestlerName;
-          // generate stats
+          w.name = this.generateNameWithMoniker(tier, maxStat);
           this.generateStats(w, tier, maxStat);
           this.generateAge(w);
           this.generateHeightAndWeight(w);
-          wrestlers.push(w);
+          wrestlers[tier].push(w);
         }
       }
     }
-    // generate wrestler for each moniker in tier d
     while(this.monikers.d.length > 0) {
-      let index = this.getRandomInt(this.monikers.d.length)
-      let moniker = this.monikers.d[index];
-      this.monikers.d.splice(index, 1);
-      let wrestlerName = "";
-      if(Math.random() < this.goesByMonikerChance) {
-        wrestlerName = moniker;
-      }
-      else {
-        let name = this.generateName('male');
-        let firstAndLast = name.split(" ");
-        wrestlerName = firstAndLast[0] + " '" + moniker + "' " + firstAndLast[1];
-      }
       let w = new Wrestler();
-      w.name = wrestlerName;
-      // generate stats
+      w.name = this.generateNameWithMoniker('d');
       this.generateStats(w, 'd');
       this.generateAge(w);
       this.generateHeightAndWeight(w);
-      wrestlers.push(w);
+      wrestlers.d.push(w);
     }
     // generate wrestlers with no moniker
-
+    let totalWrestlers = wrestlers.s.length + wrestlers.a.length + wrestlers.b.length + wrestlers.c.length + wrestlers.d.length
+    let amount = Math.floor(totalWrestlers / 5)
+    while(amount > 0) {
+      let w = new Wrestler();
+      w.name = this.generateName('male');
+      let tiers = this.tiers;
+      tiers.push('d');
+      let tier = tiers[amount % tiers.length];
+      this.generateStats(w, tier);
+      this.generateAge(w);
+      this.generateHeightAndWeight(w);
+      wrestlers[tier].push(w);
+      amount--;
+    } 
     return wrestlers;
+  }
+
+  private generateNameWithMoniker(tier: string, maxStat?: string) {
+    let moniker = "";
+    if(maxStat) {
+      let index = this.getRandomInt(this.monikers[maxStat][tier].length)
+      moniker = this.monikers[maxStat][tier][index];
+      this.monikers[maxStat][tier].splice(index, 1);
+    }
+    else {
+      let index = this.getRandomInt(this.monikers[tier].length)
+      moniker = this.monikers.d[index];
+      this.monikers.d.splice(index, 1);
+    }
+    
+    let wrestlerName = "";
+    if(Math.random() < this.goesByMonikerChance) {
+      wrestlerName = moniker;
+    }
+    else {
+      let name = this.generateName('male');
+      let firstAndLast = name.split(" ");
+      wrestlerName = firstAndLast[0] + " '" + moniker + "' " + firstAndLast[1];
+    }
+    return wrestlerName;
   }
 
   private generateStats(w: Wrestler, tier: string, maxStat?: string) {
@@ -227,11 +237,11 @@ export class GeneratorService {
     w.height = feet + "'" + inches + '"';
   }
 
-  private getRandomInt(max) {
+  getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
 
-  private getRandomIntRange(min, max) {
+  getRandomIntRange(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive

@@ -6,4 +6,5 @@ export class Wrestler {
     height: string;
     weight: number;
     stats: Stats = new Stats();
+    location: string;
 }
